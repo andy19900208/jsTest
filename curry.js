@@ -1,3 +1,4 @@
+/*
 var http = require('http');
 
 function fetchData(path, handler) {
@@ -23,7 +24,21 @@ function showResult(result) {
 
 var path = 'http://www.json-generator.com/api/json/get/bPQMSaHjsi?indent=2';
 fetchData(path, showResult);
+*/
+function multiply(x, y){
+  return x * y;
+}
 
 
+function curriedMultiply(x) {
+  var multiply = function (y) {
+    return x * y;
+  }
+  return multiply;
+}
 
+var mult3 = curriedMultiply(3);
+
+console.log(mult3(3));
+console.log(mult3(5));
 
