@@ -1,30 +1,3 @@
-/*
-var http = require('http');
-
-function fetchData(path, handler) {
-    http.get(path, (error, response, body) => {
-        //console.log(`Got response: ${res.statusCode}`);
-        console.log(body);
-    //res.resume();
-    }).on('error', (e) => {
-        console.log(`Got error: ${e.message}`);
-    });
-    // var xmlHttp = new XMLHttpRequest();
-    // var result = {};
-
-    // xmlHttp.open( "GET", path, false );
-    // xmlHttp.send( null );
-    // result = JSON.parse(xmlHttp.responseText);
-    // handler(result.data);
-}
-
-function showResult(result) {
-    console.log('The result is: ' + result);
-}
-
-var path = 'http://www.json-generator.com/api/json/get/bPQMSaHjsi?indent=2';
-fetchData(path, showResult);
-*/
 function multiply(x, y){
   return x * y;
 }
@@ -39,6 +12,28 @@ function curriedMultiply(x) {
 
 var mult3 = curriedMultiply(3);
 
-console.log(mult3(3));
-console.log(mult3(5));
+console.log(mult3(3));//9
+console.log(mult3(5));//15
 
+
+function curriedFx(x) {
+    
+  var fx = function (f) {
+    return f(x);
+  }
+  
+  return fx;
+}
+
+var Fx7 = curriedFx(7);
+console.log(Fx7((x)=>x*x))//49;
+console.log(Fx7((x)=>x+x));//14
+
+var Fx5 = curriedFx(5);
+console.log(Fx5((x)=>x*x));//25
+console.log(Fx5((x)=>x+x));//10
+
+
+Fx7((x)=>{
+    console.log(x + Fx5((x)=>x*x))//32
+})
